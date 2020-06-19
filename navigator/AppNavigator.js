@@ -18,6 +18,16 @@ function TabNavigator() {
       }}
     >
       <Tab.Screen
+        name="Project"
+        component={ProjectScreen}
+        options={{
+          tabBarLabel: "Projects",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="ios-folder-open" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
@@ -34,17 +44,6 @@ function TabNavigator() {
           tabBarLabel: "Courses",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="ios-folder" color={color} size={size} />
-          ),
-        }}
-      />
-
-      <Tab.Screen
-        name="Project"
-        component={ProjectScreen}
-        options={{
-          tabBarLabel: "Projects",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ios-folder-open" color={color} size={size} />
           ),
         }}
       />

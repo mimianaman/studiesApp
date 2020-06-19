@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Animated,
   Easing,
+  Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ClassCategorie from "../components/ClassCategorie";
@@ -76,6 +77,7 @@ class HomeScreen extends Component {
   };
   componentDidMount() {
     StatusBar.setBarStyle("dark-content", true);
+    if (Platform.OS == "android") statusbar.setBarStyle("light-content", true);
   }
 
   componentDidMount() {
@@ -149,7 +151,7 @@ class HomeScreen extends Component {
                   <ClassCategorie key={index} text={categorie.text} />
                 ))}
               </ScrollView>
-              <Subtitle>continue learning</Subtitle>
+              <Subtitle>{"continue learning".toUpperCase()}</Subtitle>
               <ScrollView
                 horizontal={true}
                 style={{ paddingBottom: 30 }}
@@ -186,18 +188,20 @@ class HomeScreen extends Component {
                   }}
                 </Query>
               </ScrollView>
-              <Subtitle>Porpular Courses</Subtitle>
-              {courses.map((course, index) => (
-                <Course
-                  key={index}
-                  title={course.title}
-                  image={course.image}
-                  subtitle={course.subtitle}
-                  avatar={course.avatar}
-                  caption={course.caption}
-                  author={course.author}
-                />
-              ))}
+              <Subtitle>{"Porpular Courses".toUpperCase()}</Subtitle>
+              <CoursesContainer>
+                {courses.map((course, index) => (
+                  <Course
+                    key={index}
+                    title={course.title}
+                    image={course.image}
+                    subtitle={course.subtitle}
+                    avatar={course.avatar}
+                    caption={course.caption}
+                    author={course.author}
+                  />
+                ))}
+              </CoursesContainer>
             </ScrollView>
           </SafeAreaView>
         </AnimatedContainer>
@@ -209,6 +213,11 @@ export default connect(mapStateToprops, mapDispatchToProps)(HomeScreen);
 const RootView = styled.View`
   background: black;
   flex: 1;
+`;
+const CoursesContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 10px;
 `;
 const CardsContainer = styled.View`
   flex-direction: row;
@@ -278,6 +287,7 @@ const cards = [
     subtitle: "Engish Languge",
     caption: "2 of 30 sections",
     logo: require("../assets/logo1.png"),
+    pdf: require("../assets/multiplication.pdf"),
   },
   {
     title: "Maths For Lower Primary",
@@ -285,13 +295,16 @@ const cards = [
     subtitle: "Mathematics",
     caption: "8 of 15 sections",
     logo: require("../assets/logo2.png"),
+    pdf: require("../assets/multiplication.pdf"),
   },
+
   {
     title: "Science For Lower Primary",
     image: require("../assets/background3.jpg"),
     subtitle: "Integrated Science",
     caption: "5 of 20 sections",
     logo: require("../assets/logo3.jpg"),
+    pdf: require("../assets/multiplication.pdf"),
   },
   {
     title: "English For Upper Primary",
@@ -299,6 +312,7 @@ const cards = [
     subtitle: "Engish Languge",
     caption: "2 of 30 sections",
     logo: require("../assets/logo1.png"),
+    pdf: require("../assets/multiplication.pdf"),
   },
   {
     title: "Maths For Upper Primary",
@@ -306,6 +320,7 @@ const cards = [
     subtitle: "Mathematics",
     caption: "1 of 40 sections",
     logo: require("../assets/logo2.png"),
+    pdf: require("../assets/multiplication.pdf"),
   },
   {
     title: "Science For Upper Primary",
@@ -313,6 +328,7 @@ const cards = [
     subtitle: "Integrated Science",
     caption: "2 of 30 sections",
     logo: require("../assets/logo3.jpg"),
+    pdf: require("../assets/multiplication.pdf"),
   },
 ];
 
